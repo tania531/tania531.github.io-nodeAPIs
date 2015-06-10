@@ -3,6 +3,11 @@ var leaderboard = function(data) {
 }
 
 $(document).ready(function() {
+  $.ajax("data.json").success(function(response) {
+    console.log(response);
+  }).error(function(x, text, error) {
+    console.error(x, text, error);
+  });
   var sorted = leaderboard(data);
   var $body = $("body");
   var divArray = [];
