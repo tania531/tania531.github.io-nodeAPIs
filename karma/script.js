@@ -1,22 +1,21 @@
-var data = [
-  { name: 'Ryan', points: 14},
-  { name: 'Colin', points: 7},
-  { name: 'Tania', points: 9},
-  { name: 'Nick', points: 21}
-];
-
-var leaderboard2 = function(data) {
-  return data.sort(function(a,b){return b.points-a.points;})
-}
-
-function liCreate(name,points) {
-  var li = $('<li>'+name+'</li>');
-  li.append('<span>'+points+'</span>');
+var leaderboard = function(data) {
+  return data.sort(compare);
 }
 
 $(document).ready(function() {
-  var sorted = leaderboard2(data);
-  for (var i=0; i<sorted.length; i++) {
-    $('body').append('<div><p>'+sorted[i].name+' '+sorted[i].points+'</p></div>')
+  var sorted = leaderboard(data);
+  var $body = $("body");
+  var divArray = [];
+  for (var i = 0; i < sorted.length; i++) {
+    var $div = $("<div>");
+    var $p = $("<p>");
+    $p.text(sorted[i].name + ' ' + sorted[i].points);
+    $div.append($p);
+    divArray.push($div);
   }
+  $body.append(divArray);
 })
+
+function compare(a, b){
+  return b.points - a.points;
+}
