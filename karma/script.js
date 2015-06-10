@@ -1,30 +1,21 @@
-var data = [
-  { "name": "Sheryl Boughton", "points": 1 },
-  { "name": "Tania Leonian", "points": 1 },
-  { "name": "Loren Barrick", "points": 3 },
-  { "name": "Stanley Liu", "points": 0 },
-  { "name": "Ryan Taylor", "points": 0 },
-  { "name": "Son Truong", "points": 1 },
-  { "name": "Michael Sankovich", "points": 0 },
-  { "name": "Gerald Anekwe", "points": 2 },
-  { "name": "Juan Barragan", "points": 1 },
-  { "name": "Troy Wood", "points": 0 },
-  { "name": "Bonnie So", "points": 0 },
-  { "name": "Collin Webb", "points": 2 },
-  { "name": "Elijah Olegnowicz", "points": 0 },
-  { "name": "Trey Huffine", "points": 1 },
-  { "name": "Sean Blattenberger", "points": 0 },
-  { "name": "Dan Ward", "points": 1 },
-  { "name": "Aliou Maiga", "points": 0 },
-  { "name": "Javier Escobar", "points": 2 },
-  { "name": "Perrin Clark", "points": 1 }
-];
+var data;
+
+var storeData = function(array) {
+  localStorage["karma.data"] = JSON.stringify(array);
+}
+
+var readData = function() {
+  data = JSON.parse(localStorage["karma.data"]);
+}
+
+// modifyPointsFor(0, 2);
 
 var leaderboard = function(data) {
   return data.sort(compare);
 }
 
 $(document).ready(function() {
+  readData();
   var sorted = leaderboard(data);
   var $body = $("body");
   var divArray = [];
