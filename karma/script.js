@@ -26,6 +26,7 @@ $(document).ready(function() {
   var $template = $(".person:first"), $clonedLi;
   var ppl = sorted.map(function(p, i) {
     $clonedLi = $template.clone().show();
+    $clonedLi.data("order", i);
     $clonedLi.find(".name").text(p.name);
     $clonedLi.find(".points").text(p.points);
     $clonedLi.find("input").val(p.points);
@@ -34,8 +35,15 @@ $(document).ready(function() {
 
   $("#ppl").append(ppl);
 
-  $("#ppl").on("dblclick", ".points", function() {
-    console.log(this);
+  $("#ppl")
+  .on("dblclick", ".points", function() {
+    var person = $(this).parents(".person");
+    console.log(person.data("order"));
+  })
+  .on("keyup", "input", function(event) {
+    if (event.which === 13) {
+      console.log("Enter")
+    }
   });
 
 })
