@@ -28,8 +28,25 @@ $(document).ready(function() {
     $clonedLi = $template.clone().show();
     $clonedLi.find(".name").text(p.name);
     $clonedLi.find(".points").text(p.points);
+    $clonedLi.find("input").val(p.points);
     return $clonedLi;
   });
 
   $("#ppl").append(ppl);
+
+  $("#ppl").on("dblclick", ".points", function() {
+    console.log(this);
+  });
+
 })
+
+
+
+
+
+
+
+
+
+
+
