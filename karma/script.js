@@ -43,7 +43,7 @@ $(document).ready(function() {
     var person = $(this).parents(".person");
     console.log($(this));
 
-    $(this).closest(".points").hide();
+    $(this).closest(".person").find(".points").hide();
     $(this).closest(".person").find(".input").removeClass("hidden");
     $(this).closest("input").show();
 
@@ -56,6 +56,7 @@ $(document).ready(function() {
       $(this).closest(".person").find(".input").addClass("hidden");
       var person = $(this).parents(".person");
       var index = person.data("order");
+      console.log("person: ", person);
       $$.modifyPointsFor(index, $(this).val());
       location.reload($$.forceGet);
     }
