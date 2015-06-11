@@ -24,6 +24,12 @@ $(document).ready(function() {
   var sorted = $$.leaderboard();
   console.log(sorted);
 
+  var oneOfYou = sorted[7];
+  var $oneOfYou = $("ul li:first").clone().show();
+  $oneOfYou.find(".name").text(oneOfYou.name);
+  $oneOfYou.find(".points").text(oneOfYou.points);
+
+  $("ul").append($oneOfYou);
 
   // var $body = $("body");
   // var divArray = [];
