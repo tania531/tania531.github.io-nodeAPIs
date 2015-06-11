@@ -22,23 +22,14 @@ var $$ = {
 $(document).ready(function() {
   $$.readData();
   var sorted = $$.leaderboard();
-  console.log(sorted);
 
-  var oneOfYou = sorted[7];
-  var $oneOfYou = $("ul li:first").clone().show();
-  $oneOfYou.find(".name").text(oneOfYou.name);
-  $oneOfYou.find(".points").text(oneOfYou.points);
+  var $template = $(".person:first"), $clonedLi;
+  var ppl = sorted.map(function(p, i) {
+    $clonedLi = $template.clone().show();
+    $clonedLi.find(".name").text(p.name);
+    $clonedLi.find(".points").text(p.points);
+    return $clonedLi;
+  });
 
-  $("ul").append($oneOfYou);
-
-  // var $body = $("body");
-  // var divArray = [];
-  // for (var i = 0; i < sorted.length; i++) {
-  //   var $div = $("<div>");
-  //   var $p = $("<p>");
-  //   $p.text(sorted[i].name + ' ' + sorted[i].points);
-  //   $div.append($p);
-  //   divArray.push($div);
-  // }
-  // $body.append(divArray);
+  $("#ppl").append(ppl);
 })
