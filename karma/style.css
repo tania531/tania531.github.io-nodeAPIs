@@ -36,6 +36,6 @@ span.points {
   float: right;
 }
 
-/* .hidden { */
-/*   display: none; */
-/* } */
+ .hidden {
+   display: none;
+ }
