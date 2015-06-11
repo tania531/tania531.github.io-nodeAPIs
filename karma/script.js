@@ -1,34 +1,38 @@
-var data;
-
-var storeData = function(array) {
-  localStorage["karma.data"] = JSON.stringify(array);
-}
-
-var readData = function() {
-  data = JSON.parse(localStorage["karma.data"]);
-}
-
-// modifyPointsFor(0, 2);
-
-var leaderboard = function(data) {
-  return data.sort(compare);
+var $$ = {
+  storeData: function() {
+    localStorage["karma.data"] = JSON.stringify(this.data);
+  },
+  readData: function() {
+    this.data = JSON.parse(localStorage["karma.data"]);
+  },
+  leaderboard: function() {
+    return this.data.sort(this.compare);
+  },
+  compare: function (a, b){
+    return b.points - a.points;
+  },
+  // modifyPointsFor(0, 2);
+  modifyPointsFor: function(indexInArray, newPoints) {
+    this.data[indexInArray].points = newPoints;
+    this.storeData();
+  },
+  data: []
 }
 
 $(document).ready(function() {
-  readData();
-  var sorted = leaderboard(data);
-  var $body = $("body");
-  var divArray = [];
-  for (var i = 0; i < sorted.length; i++) {
-    var $div = $("<div>");
-    var $p = $("<p>");
-    $p.text(sorted[i].name + ' ' + sorted[i].points);
-    $div.append($p);
-    divArray.push($div);
-  }
-  $body.append(divArray);
-})
+  $$.readData();
+  var sorted = $$.leaderboard();
+  console.log(sorted);
 
-function compare(a, b){
-  return b.points - a.points;
-}
+
+  // var $body = $("body");
+  // var divArray = [];
+  // for (var i = 0; i < sorted.length; i++) {
+  //   var $div = $("<div>");
+  //   var $p = $("<p>");
+  //   $p.text(sorted[i].name + ' ' + sorted[i].points);
+  //   $div.append($p);
+  //   divArray.push($div);
+  // }
+  // $body.append(divArray);
+})
