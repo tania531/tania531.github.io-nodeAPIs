@@ -4,48 +4,18 @@
     <title>Leaderboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
   </head>
-  <style type="text/css">
-    body {
-      text-align: center;
-      font-family: "helvetica", "sans-serif";
-      line-height: 150%;
-    }
-    @media(max-width: 400px){
-      body{
-        
-      }
-    }
-    ul{
-      border: 2px solid black;
-      width: 30%;
-      padding: 10px;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 5px;
-      list-style-type: none;
-    }
-    .points{
-      float: right;
-    }
-    .name{
-      float: left;
-    }
-    input[type="number"]{
-      height: 15px;
-      width: 100px;
-      float: right;
-      border-radius: 5px;
-    }
-  </style>
+  <link href="style.css" rel="stylesheet" type="text/css">
   <body>
     <h1>Leaderboard</h1>
-    <ul>
-      <li class="person" id="template" style="display: none;">&nbsp;
-        <span class="name"></span>
-        <span class="points"></span>
-        <input class="input" type="number">
-      </li>
-    </ul>
+    <div id="ppl">
+      <div class="person" style="display: none;">
+        <span class="name">...</span>
+        <span class="points">...</span>
+        <span class="input hidden">
+          <input type="number">
+        </span>
+      </div>
+    </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="script.js"></script>
   </body>
