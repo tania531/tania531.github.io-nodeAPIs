@@ -1,43 +1,66 @@
-var data = [
-  { "name": "Sheryl Boughton", "points": 1 },
-  { "name": "Tania Leonian", "points": 1 },
-  { "name": "Loren Barrick", "points": 3 },
-  { "name": "Stanley Liu", "points": 0 },
-  { "name": "Ryan Taylor", "points": 0 },
-  { "name": "Son Truong", "points": 1 },
-  { "name": "Michael Sankovich", "points": 0 },
-  { "name": "Gerald Anekwe", "points": 2 },
-  { "name": "Juan Barragan", "points": 1 },
-  { "name": "Troy Wood", "points": 0 },
-  { "name": "Bonnie So", "points": 0 },
-  { "name": "Collin Webb", "points": 2 },
-  { "name": "Elijah Olegnowicz", "points": 0 },
-  { "name": "Trey Huffine", "points": 1 },
-  { "name": "Sean Blattenberger", "points": 0 },
-  { "name": "Dan Ward", "points": 1 },
-  { "name": "Aliou Maiga", "points": 0 },
-  { "name": "Javier Escobar", "points": 2 },
-  { "name": "Perrin Clark", "points": 1 }
-];
+var $$ = {
+  storeData: function(){
+    localStorage['karma.data'] = JSON.stringify(this.data);
+  },
+  readData: function(){
+    this.data = JSON.parse(localStorage['karma.data']);
+  },
+  leaderboard: function() {
+    return this.data.sort(this.compare);
+  },
+  compare: function(a, b){
+    return b.points - a.points;
+  },
+  modifyPointsFor: function(indexInArray, newPoints){
+    this.data[indexInArray].points = newPoints;
+    this.storeData();
+  },
+  loadTable: function(){
+    this.readData();
+    var sorted = this.leaderboard();
+    var liArray = [];
+    for (var i = 0; i < sorted.length; i++) {
+      var oneOfYou = sorted[i];
+      var $oneOfYou = $('ul li:first').clone().show();
+      $oneOfYou.find('.name').text(oneOfYou.name);
 
-var leaderboard = function(data) {
-  return data.sort(compare);
+      var points = $oneOfYou.find('.points')
+      points.text(oneOfYou.points);
+      points.bind('dblclick', this.showInput);
+
+      var input = $oneOfYou.find('.input')
+      input.bind('keypress', this.updateValues);
+      input.hide();
+
+      $oneOfYou.attr('id', i);
+      liArray.push($oneOfYou);
+    }
+    $('ul').append(liArray);
+  },
+  showInput: function(){
+    var value = $(this).text();
+    var input = $(this).parent('li').find('.input');
+    input.attr('value', value);
+    input.show();
+    $(this).hide();
+  },
+  updateValues: function(event){
+    var key = event.which;
+    if(key === 13){
+      var span = $(this).parent('li').find('.points');
+      var value = $(this).val();
+      span.text(value);
+      span.show();
+      $$.modifyPointsFor($(this).parent('li').attr('id'), value);
+      $(this).hide();
+      $('.person:not(#template)').remove();
+      $$.loadTable();
+    }
+  },
+  data:[]
 }
 
 $(document).ready(function() {
-  var sorted = leaderboard(data);
-  var $body = $("body");
-  var divArray = [];
-  for (var i = 0; i < sorted.length; i++) {
-    var $div = $("<div>");
-    var $p = $("<p>");
-    $p.text(sorted[i].name + ' ' + sorted[i].points);
-    $div.append($p);
-    divArray.push($div);
-  }
-  $body.append(divArray);
-})
+  $$.loadTable();
+});
 
-function compare(a, b){
-  return b.points - a.points;
-}
