@@ -36,8 +36,14 @@ span.points {
   float: right;
 }
 
+<<<<<<< HEAD
 .hidden{
   display: none;
 }
 
 
+=======
+ .hidden {
+   display: none;
+ }
+>>>>>>> 779d27a7e88a9860a1009968c5da0856ce654152
