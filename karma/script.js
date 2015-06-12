@@ -16,8 +16,10 @@ var $$ = {
     this.data[indexInArray].points = newPoints;
     this.storeData();
   },
-  data: []
+  data: [],
+  forceGet: true
 }
+
 
 $(document).ready(function() {
   $$.readData();
@@ -37,12 +39,19 @@ $(document).ready(function() {
 
   $("#ppl")
   .on("dblclick", ".points", function() {
-    var person = $(this).parents(".person");
-    console.log(person.data("order"));
+    $(this).css("display", "none");
+    $(this).next().show();
   })
   .on("keyup", "input", function(event) {
     if (event.which === 13) {
-      console.log("Enter")
+      var person = $(this).parents(".person");
+      var personIndex = person.data("order");
+      var newVal = $(this).val();
+      $$.modifyPointsFor(personIndex, newVal);
+      $$.storeData($$.data);
+      location.reload($$.forceGet);
+      $(this).hide();
+      $(".points").show();
     }
   });
 
