@@ -1,0 +1,74 @@
+<html>
+<head><title></title></head>
+<body>
+
+<script type="text/javascript">
+(function(){
+	
+function wordSelector(text){
+
+  var textArr = text.toLowerCase().match(/[a-z']+/gi);
+  var maxLetters = [];
+
+  textArr.forEach(function(word){
+    var letterCount = {};
+    var letters = word.split('');
+    letters.forEach(function(letter){
+      letterCount[letter] = (letterCount[letter] || 0) +1;
+    });
+    console.log(word, letterCount.maxValue());
+    maxLetters.push(letterCount.maxValue());
+  });
+  // getMaxofMaxes(maxLetters);
+  var maxObj = {maxLetters:0, maxWord:''};
+  maxLetters.forEach(function(ml){
+  	maxObj.maxLetters = ml;
+  	maxObj.maxWord = maxLetters[ml];
+  	console.log('ml',ml);
+  	console.log('maxLetters',maxObj.maxLetters);
+  	console.log('maxWord',maxObj.maxWord);
+  });
+  console.log('maxObj',maxObj);
+}
+
+// getMaxOfMaxes(arrMax){
+
+// }
+
+Array.prototype.max = function() {
+  return Math.max.apply(null, this);
+}
+
+function maxValueInObject(obj) {
+  var max;
+
+  var keys = Object.keys(obj);
+  //console.log(keys);
+
+  var values = keys.map(function(key){
+    return obj[key];
+  });
+
+  max = values.max();
+
+  return max;
+}
+
+
+Object.prototype.maxValue = function() {
+  return maxValueInObject(this);
+}
+
+var result = wordSelector("I attribute my success to this: I never gave or took any excuse. –Florence Nightingale");
+
+console.log(result);
+
+console.assert(maxValueInObject({a: 4, b:7, c:3, d: 1}) === 7);
+
+console.assert(maxValueInObject({r: -1, c:2, y:5, z: 0}) === 5);
+
+})();
+
+</script>
+</body>
+</html>

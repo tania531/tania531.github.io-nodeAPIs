@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="inventory">
+  <head ng-app="inventory">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <!-- <link rel="stylesheet" href="style.css" /> -->
+    <script src="script.js"></script>
+    <script src="room.js"></script>
+  </head>
+
+  <body ng-controller="room">
+    <h1>Room Inventory</h1>
+
+    <label for="room">Room:</label>
+    <input type="text" ng-model="room">
+    <button id="roomBtn" ng-click="addRoom(room)">Create Room</button>
+    {{ room }}
+    <br />
+
+    <label for="name">Name:</label>
+    <input type="text" ng-model="name">
+    <button id="nameBtn" ng-click="addName(name)">Add Item(s)</button>
+    {{ name }}
+    <br />
+
+    <label for="count">Count:</label>
+    <input type="number" ng-model="count">
+    <button id="countBtn" ng-click="addCount(count)">Add Count</button>
+    {{ count }}
+    <br />
+
+    <label for="name">cost:</label>
+    <input type="number" ng-model="cost">
+    <button id="nameBtn" ng-click="addName(name)">Add Cost</button>
+    {{ cost | currency }}
+
+  </body>
+</html>

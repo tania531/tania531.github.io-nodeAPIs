@@ -1,0 +1,71 @@
+pick 2 of challenges
+
+tdd first - ci first 
+
+
+$("#list").on('click', '.listItem', function(){
+	$(this).closest("li").remove();
+});
+	
+
+with paren, calling on 
+
+$().each(function(){})
+
+
+
+
+without paren - can specify / ;pass array in 
+
+$.each([], function(){ })
+	
+
+	click - click on all parents - stop propagation 
+
+	should be using event arg in click handeler even though it works without 
+
+
+	====
+
+	only strings in local storage
+
+	json stringify - to store
+
+	JSON.parse([1,2,3])
+
+	localStorage.set("nameOfVariable")
+
+	make it an array - to do app
+
+	localStorage.get('nameOfVariable')
+
+	make to do app persist with local storage - in DOM
+
+	make it work with data - 
+	
+
+	$(document).ready(function(){
+
+	var todos = [];
+
+	var todos = [{text: "do this", done:"false"}];
+
+	new item gets added =- todos.push(newTodo.val());
+
+	})
+
+	var them = localStorage["theme"];
+
+	theme = (theme ==== 'light' ? 'dark' : 'light');
+
+	localStorage["theme"] = theme;
+
+	localStorage.removeItem('nameOfVariable')
+
+
+=====
+
+
+
+
+

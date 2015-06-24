@@ -1,0 +1,16 @@
+/* Styles go here */
+
+.strikethrough {
+  text-decoration: line-through;
+}
+
+.done {
+  text-decoration:line-through;
+  color:#aaa;
+}
+
+#LScontain {
+  border: 1px solid blue;
+  min-width:200px;
+  min-height:100px;
+}

@@ -1,0 +1,28 @@
+<html>
+<head><title>js fizz buzz </title></head>
+<body>
+<script type="text/javascript">
+(function fizzBuzz(){
+    var arr = [];
+    for(var i = 0; i < 100; i++){
+        arr.push(i);
+        //console.log(arr);
+        if((arr[i] % 3 === 0)&& (arr[i]%5 === 0)){
+            console.log(" /15 fizzbuzz");
+               
+        } else if (arr[i] % 5 === 0) {
+             console.log("/5 buzz");   
+        } else if (arr[i] % 3 === 0){
+             console.log("/3 fizz");   
+        }
+        else {
+            console.log("i: ", i);
+        } 
+    }
+    
+})();
+        
+
+</script>     
+</body>
+</html>

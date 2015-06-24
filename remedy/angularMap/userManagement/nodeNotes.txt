@@ -1,0 +1,84 @@
+node is basically chrome
+
+chrome renderer renders / parses html
+
+has js exe engine - v8
+
+v8 is part of chrome that runs js
+
+
+node is v8 + libuv = allows async
+
+in browser you can't write to files
+
+strapped v8 on to js - write ot files etc - packaged up in to node
+
+raspberry pie - mini credit card size ptrs
+
+happi  - web server 
+
+mongo = install mongo 
+
+
+
+
+node module - problem , solved - 3 files loaded in browser
+
+js doesn't understand encapsulation - privacy - so vars don't get overwritten - x is local to module in - to expose to world - export = x visible outside - export ffrom file  another file import 
+
+modularity - transfer back and forth 
+
+nodemon lets you restart server
+
+github/hapijs/hapi
+
+
+mv server /lib
+
+server/
+
+npm install hapi blipp good good-cosole hoek request --save
+
+server.js = use stric
+
+var Hapi = require('hapi')
+
+bag for by desk
+
+start hapi server to listen for que 
+
+nodemon starts and stops server when save
+
+exports.init = function name(port, next){
+		var server = new Hapi.Server 
+
+		Server.connection(port:port)
+		port is like extenion on phone line
+
+		Server.start(function(err){
+		return next(error, server);
+		})
+});
+
+
+index.js in main directory = 
+
+use strict
+
+var Hoek = require('hoek')
+
+ver Server = require('/lib/server')
+
+// next is function 
+Server.init(8000, function(){
+	Hoek.assert(!err,err);
+	console.log('hapi is listening');
+
+	when done nodemon index.js
+
+
+	end up calling the callback
+
+	
+})
+

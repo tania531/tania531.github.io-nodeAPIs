@@ -1,0 +1,41 @@
+<html>
+<head><title></title></head>
+<body>
+
+<script type="text/javascript">
+// (function(){
+	
+
+function createObject(N){
+
+	Obj = {item:0,val:0};
+
+	for (var i = 0; i < N; i++){
+		for (item in Obj){
+			
+			item = i;
+			console.log('key', item);
+			Obj[item] = item * 10;
+			
+			// document.write('item: ', item + '<br />');
+			// document.write('Obj[item]: ', Obj[item] + '<br />');
+			document.write(item, +' : ' + Obj[item] + '<br />');
+		}
+		console.log('Obj',Obj);
+		
+	}
+	console.log('Obj.item',Obj.item);
+	return Obj;
+}
+
+// })();
+
+var newObj = createObject(5);
+
+document.write(newObj);
+
+console.log('call :', createObject(5));
+
+</script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html>
+<head><title></title></head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+
+
+$(document).ready(init);
+
+function init() {
+	var word = "hello";
+	
+	var letters = [];
+
+	letters = word.split('');
+	console.log('arr before', letters);
+
+	$.map(letters,function(letter, l) {
+		console.log('l: ', l);
+		return letter+'X';
+  		
+	});
+
+	console.log('arr after', letters);
+}
+
+</script>
+</body>
+</html>

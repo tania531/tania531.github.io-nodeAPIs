@@ -1,0 +1,59 @@
+
+
+order the table ascending and descending when you click - angular filters - google 
+
+commit to github
+
+
+search box  - saerch - rturn jut restult - works on name, maybe email
+
+saerch by notes  - use match with regular expression - 
+
+
+x make array of object  - string  date  - 
+
+x   if no notes , different row color 
+
+x  tnumber of notes per user
+
+===
+
+if it's a state, goes in to scope as variable
+
+
+if it's computed - compute it in a function - is it a state for soemting to compute
+
+if compute - function - if state - scoope variable
+
+
+===
+
+after this - work with firebase 
+
+
+
+
+====
+
+
+alert('new note called');
+
+
+console.log('$scope.newNotes: ', $scope.newNotes);
+
+, ng-class="{text-error: hasNoNotes($index)}"
+
+ng-class="{active: isActive($index)}"
+
+ng-class="{active: isActive($index)}"
+
+======
+
+$scope.editBlog = function(blog){
+    $scope.blog = blog;
+ };
+
+
+   $scope.deleteBlog = function(blog){
+    Blog.destroy(blog);
+  };

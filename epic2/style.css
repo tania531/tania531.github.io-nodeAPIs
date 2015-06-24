@@ -1,0 +1,22 @@
+/* Styles go here */
+
+#userChoice {
+  margin-top:15px;
+}
+#wordDisplay {
+
+  margin-top:200px;
+  text-align:center;
+}
+
+#figureDrawing {
+
+
+}
+
+.col-md-6 {
+  width:300px;
+  height:400px;
+  border:1px solid black;
+
+}

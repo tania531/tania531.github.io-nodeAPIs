@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style type="text/css">
+      
+    .table {
+      border: 1px solid blue;
+      margin:20px;
+      margin: auto;
+    }
+
+      h2 {
+        text-align: center;
+      }
+
+      .p {
+        text-align: center;
+        padding-top: 130px;
+      }
+      .text-error {
+        color:red;
+      }
+    </style>
+   
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+    <!-- Firebase -->
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <!-- AngularFire -->
+    <script src="https://cdn.firebase.com/libs/angularfire/1.0.0/angularfire.min.js"></script>
+
+    <script src="index.js"></script>
+    <script src="User.js"></script>
+
+ 
+  </head>
+  <body ng-app='users' >
+   <div ng-controller="UserCtrl" class="container">
+
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Add New User</h4>
+      </div>
+      <div class="modal-body">
+
+        <!-- start form -->
+        <form>
+
+          <div class="form-group">
+            <label for="exampleName">Name</label>
+            <input type="text" class="form-control" id="exampleInputName" placeholder="Enter name" ng-model="newUser.name">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" ng-model="newUser.email">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputPhone">Phone</label>
+            <input type="text" class="form-control" id="exampleInputPhone" placeholder="Phone" ng-model="newUser.phone">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputDate">Date</label>
+            <input type="date" id="exampleInputDate" ng-model="newUser.date">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputNotes">Notes</label>
+            <input type="text" class="form-control" id="exampleInputNotes" placeholder="Notes" ng-model="newUser.notes">
+          </div>
+
+          <div class="form-group">
+            <label for="exampleInputDate">Notes Date</label>
+            <input type="text" id="examplenotetDate" ng-model="newUser.note.date">
+          </div>
+
+          <button type="submit" class="btn btn-default" ng-click="addNewUser(newUser)" >Submit</button>
+        </form>
+      </div>
+      <!-- end user form -->
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-8">
+      <table class="table" >
+          <thead>
+              <tr >
+                  <th ng-click='sort("name")'>Name</a></th>
+                  <th ng-click='sort("email")'>Email</th>
+                  <th ng-click='sort("phone")'>Phone</th>
+                  <th ng-click='sort("date")'>Date</th>
+                  <th># Notes</th>
+                  <th>Add Note</th>
+                  <th>Delete Note</th>
+                  
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat="user in afUsers  | orderBy:taskOrder | filter:searchText" , ng-class="{'text-error': hasNoNotes(user), active: isActive($index)}">
+                  <td ng-click="getNotes(user, $index)" style="color:blue">{{user.name}}</td>
+                  <td>{{user.email}}</td>
+                  <td>{{user.phone}}</td>
+                  <td > {{user.date}}</td>
+                   <!-- <td> {{numNotes(user)}}</td> -->
+                   <td> {{user.notes.length}}</td>
+                  <td> <button class="btn btn-default" type="submit" >Add</button> </td>
+                  
+                  <td> <button class="btn btn-default" type="submit" ng-click="deleteUser(user)">Delete</button> </td>
+              </tr>        
+          </tbody>
+        </table>
+  </div>
+
+<!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+              Add New User
+            </button>
+
+  <div class="col-md-4">
+
+      <form>
+        <div class="form-group">
+          <label for="searchTerm">Search Users</label>
+          <input type="text" class="form-control" id="searchTerm" placeholder="Enter search term" ng-model="searchText">
+        </div>
+      
+      </form>
+
+      <table class="table">
+          <thead>
+              <tr >
+                  <th>Notes</th>
+                  <th>Date</th>
+              </tr>
+          </thead>
+          <tbody>
+              <tr ng-repeat='note in user.notes track by $index'>  
+                <td>  {{note.content}}</td>
+                <td>  {{note.date | date: 'yyyy-MM-dd'}}</td>
+
+<!--                  <td>  {{displayNotes(note)}}</td>
+                <td>  {{note.date}}</td> -->
+              </tr>        
+          </tbody>
+        </table>
+
+        <form>
+        <div class="form-group">
+          <label for="exampleInputNotes">Add New Notes</label>
+
+          <input type="textarea" class="form-control" id="exampleInputNoteContent" placeholder="Enter note content" ng-model="notes.content">
+        </div>
+       
+        <div class="date">
+          <label>
+            <input type="date" ng-model="notes.date"> Date
+          </label>
+        </div>
+        <button type="submit" class="btn btn-default" ng-click="addNewNotes(notes)">Submit</button>
+      </form>
+
+  </div>
+
+</div>
+         
+
+   </div>
+
+
+  </body>
+</html>
